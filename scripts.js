@@ -4,14 +4,19 @@ function appendNumber(number) {
     display.value += number;
 }
 
+// Função para adicionar um operador ao visor da calculadora
 function appendOperator(operator) {
     const display = document.getElementById('display');
     display.value += operator;
 }
 
+// Função para realizar o cálculo da expressão no visor da calculadora
 function calculate() {
     const display = document.getElementById('display');
     const result = eval(display.value);
+    if(result == undefined){
+        return;
+    }
     display.value = result;
 }
 
@@ -22,7 +27,7 @@ function changePage(pageId) {
         pages[i].style.display = 'none';
     }
 
-    const menuItems = document.getElementsByClassName('menu-item');
+    const menuItems = document.getElementsByClassName('nav-link');
     for (let i = 0; i < menuItems.length; i++) {
         menuItems[i].classList.remove('active');
     }
@@ -41,6 +46,10 @@ function calcularIMC() {
 
     const imc = peso / (altura * altura);
     let resultado = '';
+
+    if(!imc){
+        return;
+    }
 
     if (imc < 18.5) {
         resultado = 'Abaixo do peso';
@@ -89,3 +98,10 @@ function limparDados() {
     document.getElementById('json-output').textContent = '';
 }
 
+  // Função para definir a tela inicial como "calculadora"
+  function setInitialPage() {
+    changePage('calculadora');
+  }
+
+  // Chamar a função setInitialPage quando a página for carregada
+  window.addEventListener('DOMContentLoaded', setInitialPage);

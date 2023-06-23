@@ -11,8 +11,7 @@ body {
 }
 
 .menu-item.active {
-    background-color: #f8f9fa;
-    border-top: 2px solid #007bff;
+    color: white;
 }
 
 .form-group label {
